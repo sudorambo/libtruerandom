@@ -4,13 +4,14 @@
  * On Windows, stub returns TR_ERR_NOT_SUPPORTED.
  */
 #include "sources.h"
+
+#ifndef _WIN32
+
 #include <errno.h>
 #include <fcntl.h>
 #include <unistd.h>
 
 #define URANDOM_PATH "/dev/urandom"
-
-#ifndef _WIN32
 
 tr_error tr_fill_posix_fallback(void *buf, size_t len)
 {
