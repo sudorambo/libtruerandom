@@ -1,0 +1,25 @@
+# Unit and integration tests (T014, T017, T023)
+
+add_executable(test_tr_bytes_unit unit/test_tr_bytes.c)
+target_link_libraries(test_tr_bytes_unit PRIVATE truerandom)
+add_test(NAME test_tr_bytes_unit COMMAND test_tr_bytes_unit)
+
+add_executable(test_tr_bytes_integration integration/test_tr_bytes.c)
+target_link_libraries(test_tr_bytes_integration PRIVATE truerandom)
+add_test(NAME test_tr_bytes_integration COMMAND test_tr_bytes_integration)
+
+add_executable(test_tr_integers_unit unit/test_tr_integers.c)
+target_link_libraries(test_tr_integers_unit PRIVATE truerandom)
+add_test(NAME test_tr_integers_unit COMMAND test_tr_integers_unit)
+
+add_executable(test_tr_integers_integration integration/test_tr_integers.c)
+target_link_libraries(test_tr_integers_integration PRIVATE truerandom)
+add_test(NAME test_tr_integers_integration COMMAND test_tr_integers_integration)
+
+add_executable(test_tr_errors_unit unit/test_tr_errors.c)
+target_link_libraries(test_tr_errors_unit PRIVATE truerandom)
+add_test(NAME test_tr_errors_unit COMMAND test_tr_errors_unit)
+
+add_executable(test_tr_errors_integration integration/test_tr_errors.c)
+target_link_libraries(test_tr_errors_integration PRIVATE truerandom)
+add_test(NAME test_tr_errors_integration COMMAND test_tr_errors_integration)
