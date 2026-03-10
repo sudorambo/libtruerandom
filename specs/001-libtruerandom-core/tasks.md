@@ -115,8 +115,8 @@
 **Purpose**: Documentation, optional features, and validation
 
 - [x] T024 [P] Add README (or README.md) at repository root: purpose, build/install from quickstart.md, minimal example, link to docs/SPECIFICATION.md
-- [ ] T025 [P] Optional: implement src/cpu_rng.c (RDRAND/RDSEED) for supplement/fallback per spec; integrate in core if enabled
-- [x] T026 Add LICENSE file at repository root with chosen license terms
+- [ ] T025 [P] Optional: implement src/cpu_rng.c (RDRAND/RDSEED) for supplement/fallback per spec; integrate in core if enabled — **deferred to post-1.0**
+- [x] T026 Add LICENSE file at repository root with chosen license terms — **verified: LICENSE exists**
 - [x] T027 Run quickstart.md validation: build, install, compile and run minimal example from quickstart
 - [x] T028 Add CI (e.g. GitHub Actions or similar) that builds the library and runs the test suite on supported platforms (Linux, Windows, macOS or documented subset) — per constitution IV
 

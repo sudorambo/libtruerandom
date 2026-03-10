@@ -10,7 +10,6 @@
 #endif
 #include <windows.h>
 #include <bcrypt.h>
-#pragma comment(lib, "bcrypt.lib")
 
 tr_error tr_fill_windows(void *buf, size_t len)
 {

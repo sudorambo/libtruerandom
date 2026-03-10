@@ -49,14 +49,23 @@ tr_error tr_range(uint32_t *out, uint32_t min_inclusive, uint32_t max_inclusive)
 {
 	if (out == NULL || min_inclusive > max_inclusive)
 		return TR_ERR_PARAM;
-	tr_error err = tr_bytes(out, sizeof(*out));
-	if (err != TR_OK)
-		return err;
+
 	uint32_t range = max_inclusive - min_inclusive + 1;
-	uint32_t r = *out;
-	if (range == 0) /* overflow: full [0,UINT32_MAX] */
-		*out = r;
-	else
-		*out = min_inclusive + (r % range);
+	if (range == 0) {
+		/* Full [0, UINT32_MAX]: any 32-bit value is valid. */
+		return tr_bytes(out, sizeof(*out));
+	}
+
+	/* Rejection sampling to eliminate modulo bias. */
+	uint32_t threshold = -range % range; /* == (2^32 - range) % range */
+	uint32_t r;
+	for (;;) {
+		tr_error err = tr_bytes(&r, sizeof(r));
+		if (err != TR_OK)
+			return err;
+		if (r >= threshold)
+			break;
+	}
+	*out = min_inclusive + (r % range);
 	return TR_OK;
 }

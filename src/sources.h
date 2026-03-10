@@ -15,4 +15,7 @@
 [[nodiscard]] tr_error tr_fill_darwin(void *buf, size_t len);
 [[nodiscard]] tr_error tr_fill_posix_fallback(void *buf, size_t len);
 
+/* Shared /dev/urandom reader used by multiple backends. */
+[[nodiscard]] tr_error tr_fill_urandom(void *buf, size_t len);
+
 #endif /* TRUERANDOM_SOURCES_H */

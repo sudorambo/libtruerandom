@@ -1,6 +1,6 @@
 # libtruerandom — C Library Specification
 
-**Version:** 1.0 (draft)  
+**Version:** 1.0.0  
 **Language:** C23 (ISO/IEC 9899:2024)  
 **Library name:** libtruerandom
 
@@ -285,7 +285,7 @@ Fills the 4 bytes of `*out` with entropy (e.g., by calling the internal fill wit
 Same as `tr_uint32` but for 8 bytes. Thread-safe.
 
 **tr_range:** `tr_error tr_range(uint32_t *out, uint32_t min_inclusive, uint32_t max_inclusive)`  
-Writes into `*out` a value in the closed interval [min_inclusive, max_inclusive] derived from entropy. **Unbiased distribution is guaranteed only when (max_inclusive - min_inclusive + 1) is a power of two.** For other ranges, the implementation may use rejection sampling or another method; the distribution may be biased, and the spec shall document the behavior (e.g., “rejection sampling; slight bias possible for non-power-of-two range sizes”). The function shall return `TR_ERR_PARAM` if `out` is null or if `min_inclusive > max_inclusive`. Thread-safe.
+Writes into `*out` a uniformly distributed value in the closed interval [min_inclusive, max_inclusive] derived from entropy. The implementation uses rejection sampling to eliminate modulo bias for all range sizes. The function shall return `TR_ERR_PARAM` if `out` is null or if `min_inclusive > max_inclusive`. Thread-safe.
 
 ### 6.6 Optional and Future API
 

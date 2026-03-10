@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(libtruerandom C CXX)
+project(libtruerandom VERSION 1.0.0 LANGUAGES C)
 
 set(CMAKE_C_STANDARD 23)
 set(CMAKE_C_STANDARD_REQUIRED ON)
@@ -13,6 +13,7 @@ option(TRUERANDOM_INSTALL "Install headers and library" ON)
 
 set(TRUERANDOM_SOURCES
   src/core.c
+  src/urandom.c
   src/linux.c
   src/windows.c
   src/darwin.c
@@ -20,6 +21,10 @@ set(TRUERANDOM_SOURCES
 )
 
 add_library(truerandom ${TRUERANDOM_SOURCES})
+set_target_properties(truerandom PROPERTIES
+  VERSION ${PROJECT_VERSION}
+  SOVERSION ${PROJECT_VERSION_MAJOR}
+)
 target_include_directories(truerandom
   PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -30,16 +35,33 @@ target_include_directories(truerandom
 target_compile_options(truerandom PRIVATE
   $<$<C_COMPILER_ID:GNU,Clang>:-Wall -Wextra>
 )
+if(WIN32)
+  target_link_libraries(truerandom PRIVATE bcrypt)
+endif()
 
 if(TRUERANDOM_INSTALL)
+  include(GNUInstallDirs)
+
   install(TARGETS truerandom
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib
-    RUNTIME DESTINATION bin
+    EXPORT truerandomTargets
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
   )
   install(DIRECTORY include/truerandom
-    DESTINATION include
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
     FILES_MATCHING PATTERN "*.h"
+  )
+
+  install(EXPORT truerandomTargets
+    FILE truerandomConfig.cmake
+    NAMESPACE truerandom::
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/truerandom
+  )
+
+  configure_file(libtruerandom.pc.in libtruerandom.pc @ONLY)
+  install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libtruerandom.pc
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
   )
 endif()
 

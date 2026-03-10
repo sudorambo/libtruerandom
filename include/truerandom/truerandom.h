@@ -5,6 +5,11 @@
 #ifndef TRUERANDOM_TRUERANDOM_H
 #define TRUERANDOM_TRUERANDOM_H
 
+#define TRUERANDOM_VERSION_MAJOR 1
+#define TRUERANDOM_VERSION_MINOR 0
+#define TRUERANDOM_VERSION_PATCH 0
+#define TRUERANDOM_VERSION "1.0.0"
+
 #include <stddef.h>
 #include <stdint.h>
 
@@ -47,8 +52,8 @@ typedef enum tr_error {
 [[nodiscard]] tr_error tr_uint64(uint64_t *out);
 
 /**
- * Write a value in [min_inclusive, max_inclusive] derived from entropy to *out.
- * Unbiased only when (max_inclusive - min_inclusive + 1) is a power of two.
+ * Write a uniformly distributed value in [min_inclusive, max_inclusive] to *out.
+ * Uses rejection sampling to eliminate modulo bias for all range sizes.
  *
  * Returns: TR_OK on success; TR_ERR_PARAM if out is NULL or min_inclusive > max_inclusive; or other errors.
  */

@@ -1,0 +1,9 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+libdir=${prefix}/@CMAKE_INSTALL_LIBDIR@
+includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@
+
+Name: libtruerandom
+Description: Portable C library for true random (entropy) bytes
+Version: @PROJECT_VERSION@
+Libs: -L${libdir} -ltruerandom
+Cflags: -I${includedir}
