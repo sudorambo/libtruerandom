@@ -10,12 +10,12 @@
 #include "../include/truerandom/truerandom.h"
 
 /* Backend fill functions: (buf, len) -> tr_error; on success exactly len bytes written. */
-[[nodiscard]] tr_error tr_fill_linux(void *buf, size_t len);
-[[nodiscard]] tr_error tr_fill_windows(void *buf, size_t len);
-[[nodiscard]] tr_error tr_fill_darwin(void *buf, size_t len);
-[[nodiscard]] tr_error tr_fill_posix_fallback(void *buf, size_t len);
+TR_NODISCARD tr_error tr_fill_linux(void *buf, size_t len);
+TR_NODISCARD tr_error tr_fill_windows(void *buf, size_t len);
+TR_NODISCARD tr_error tr_fill_darwin(void *buf, size_t len);
+TR_NODISCARD tr_error tr_fill_posix_fallback(void *buf, size_t len);
 
 /* Shared /dev/urandom reader used by multiple backends. */
-[[nodiscard]] tr_error tr_fill_urandom(void *buf, size_t len);
+TR_NODISCARD tr_error tr_fill_urandom(void *buf, size_t len);
 
 #endif /* TRUERANDOM_SOURCES_H */

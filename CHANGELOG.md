@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Windows backend using `BCryptGenRandom`.
 - macOS/BSD backend using `getentropy(2)` with `/dev/urandom` fallback.
 - POSIX fallback backend using `/dev/urandom`.
-- C23 standard with `[[nodiscard]]` on all public functions.
+- C23 standard with portable `TR_NODISCARD` / `TR_MAYBE_UNUSED` attribute macros (C23 `[[nodiscard]]` on GCC/Clang, `_Check_return_` on MSVC).
 - CMake build system with `BUILD_SHARED_LIBS`, `TRUERANDOM_TESTS`, and `TRUERANDOM_INSTALL` options.
 - Unit and integration test suites for all public API functions.
 - CI via GitHub Actions on Linux, Windows, and macOS.

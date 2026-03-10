@@ -14,7 +14,7 @@ See [docs/SPECIFICATION.md](docs/SPECIFICATION.md) for the full specification an
 
 ## Build and install
 
-Requires a C23-compatible compiler and CMake 3.10+.
+Requires CMake 3.10+ and a C compiler. C23 is used when available (GCC 14+, Clang 18+); MSVC is supported via portable compatibility macros.
 
 From the repository root:
 

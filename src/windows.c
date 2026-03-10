@@ -15,14 +15,15 @@ tr_error tr_fill_windows(void *buf, size_t len)
 {
 	if (len == 0)
 		return TR_OK;
-	NTSTATUS st = BCryptGenRandom(nullptr, (PUCHAR)buf, (ULONG)len, BCRYPT_USE_SYSTEM_PREFERRED_RNG);
+	NTSTATUS st = BCryptGenRandom(NULL, (PUCHAR)buf, (ULONG)len, BCRYPT_USE_SYSTEM_PREFERRED_RNG);
 	if (!BCRYPT_SUCCESS(st))
 		return TR_ERR_IO;
 	return TR_OK;
 }
 #else
-tr_error tr_fill_windows(void *buf [[maybe_unused]], size_t len [[maybe_unused]])
+tr_error tr_fill_windows(void *buf, size_t len)
 {
+	(void)buf; (void)len;
 	return TR_ERR_NOT_SUPPORTED;
 }
 #endif

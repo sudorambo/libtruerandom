@@ -383,11 +383,11 @@ The install target shall install the public header(s) to the include path, the s
 
 ### 9.4 Usage by Consumers
 
-A consumer shall include the header with `#include <truerandom/truerandom.h>` and link with `-ltruerandom` (or the platform equivalent). No compile-time defines shall be required for default use. The consumer shall use a C23-compatible compiler.
+A consumer shall include the header with `#include <truerandom/truerandom.h>` and link with `-ltruerandom` (or the platform equivalent). No compile-time defines shall be required for default use. The header is compatible with C17 and later (including MSVC); a C23-compatible compiler is recommended but not required.
 
 ### 9.5 C Standard
 
-The library shall be written and built with **C23** (ISO/IEC 9899:2024). The build shall set the compiler to C23 (e.g., `-std=c23`). Any use of C23-specific features (e.g., `thread_local` for thread-local state, if used) shall be documented. Minimum compiler versions (e.g., GCC 14+, Clang 18+, MSVC 2022 17.8+) shall be documented as needed.
+The library targets **C23** (ISO/IEC 9899:2024). The build shall request C23 from the compiler (e.g., `-std=c23`) but shall not require it when the compiler lacks support: on MSVC, the build falls back to the highest C standard available (currently C17). C23-specific attributes (`[[nodiscard]]`, `[[maybe_unused]]`) are provided through portable macros (`TR_NODISCARD`, `TR_MAYBE_UNUSED`) defined in the public header, expanding to compiler-specific equivalents (e.g., `__attribute__((warn_unused_result))` on GCC/Clang, `_Check_return_` on MSVC). The library avoids other C23-only constructs (e.g., `nullptr`) in code paths compiled by MSVC. Minimum compiler versions: GCC 14+, Clang 18+, MSVC 2022 17.8+.
 
 ---
 

@@ -10,6 +10,33 @@
 #define TRUERANDOM_VERSION_PATCH 0
 #define TRUERANDOM_VERSION "1.0.0"
 
+/* Portable attribute macros: C23 attributes on GCC/Clang, compiler-specific equivalents elsewhere. */
+#if defined(__has_c_attribute)
+#  if __has_c_attribute(nodiscard)
+#    define TR_NODISCARD [[nodiscard]]
+#  endif
+#  if __has_c_attribute(maybe_unused)
+#    define TR_MAYBE_UNUSED [[maybe_unused]]
+#  endif
+#endif
+#ifndef TR_NODISCARD
+#  if defined(__GNUC__) || defined(__clang__)
+#    define TR_NODISCARD __attribute__((warn_unused_result))
+#  elif defined(_MSC_VER)
+#    include <sal.h>
+#    define TR_NODISCARD _Check_return_
+#  else
+#    define TR_NODISCARD
+#  endif
+#endif
+#ifndef TR_MAYBE_UNUSED
+#  if defined(__GNUC__) || defined(__clang__)
+#    define TR_MAYBE_UNUSED __attribute__((unused))
+#  else
+#    define TR_MAYBE_UNUSED
+#  endif
+#endif
+
 #include <stddef.h>
 #include <stdint.h>
 
@@ -35,21 +62,21 @@ typedef enum tr_error {
  *          TR_ERR_NOT_SUPPORTED, TR_ERR_IO, or TR_ERR_NO_ENTROPY on failure.
  * On failure, buffer contents are unspecified.
  */
-[[nodiscard]] tr_error tr_bytes(void *buf, size_t len);
+TR_NODISCARD tr_error tr_bytes(void *buf, size_t len);
 
 /**
  * Write a single random uint32_t derived from entropy to *out.
  *
  * Returns: TR_OK on success; TR_ERR_PARAM if out is NULL; or other errors.
  */
-[[nodiscard]] tr_error tr_uint32(uint32_t *out);
+TR_NODISCARD tr_error tr_uint32(uint32_t *out);
 
 /**
  * Write a single random uint64_t derived from entropy to *out.
  *
  * Returns: TR_OK on success; TR_ERR_PARAM if out is NULL; or other errors.
  */
-[[nodiscard]] tr_error tr_uint64(uint64_t *out);
+TR_NODISCARD tr_error tr_uint64(uint64_t *out);
 
 /**
  * Write a uniformly distributed value in [min_inclusive, max_inclusive] to *out.
@@ -57,7 +84,7 @@ typedef enum tr_error {
  *
  * Returns: TR_OK on success; TR_ERR_PARAM if out is NULL or min_inclusive > max_inclusive; or other errors.
  */
-[[nodiscard]] tr_error tr_range(uint32_t *out, uint32_t min_inclusive, uint32_t max_inclusive);
+TR_NODISCARD tr_error tr_range(uint32_t *out, uint32_t min_inclusive, uint32_t max_inclusive);
 
 #ifdef __cplusplus
 }

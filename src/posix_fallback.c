@@ -15,8 +15,9 @@ tr_error tr_fill_posix_fallback(void *buf, size_t len)
 }
 
 #else
-tr_error tr_fill_posix_fallback(void *buf [[maybe_unused]], size_t len [[maybe_unused]])
+tr_error tr_fill_posix_fallback(void *buf, size_t len)
 {
+	(void)buf; (void)len;
 	return TR_ERR_NOT_SUPPORTED;
 }
 #endif
