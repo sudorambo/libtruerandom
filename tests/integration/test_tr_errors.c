@@ -2,7 +2,7 @@
  * Integration test for error codes: TR_ERR_PARAM, TR_ERR_NOT_SUPPORTED.
  * I/O and no-entropy behavior are platform-dependent; document in test output.
  */
-#include <truerandom/truerandom.h>
+#include "../../include/truerandom/truerandom.h"
 #include <stdio.h>
 #include <stdlib.h>
 

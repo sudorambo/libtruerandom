@@ -24,7 +24,7 @@
 **Purpose**: Project initialization and basic structure
 
 - [x] T001 Create directory structure: include/truerandom/, src/, tests/unit/, tests/integration/ at repository root
-- [x] T002 Add root CMakeLists.txt with C17, libtruerandom library target, install (header + library), optional TRUERANDOM_TESTS
+- [x] T002 Add root CMakeLists.txt with C23, libtruerandom library target, install (header + library), optional TRUERANDOM_TESTS
 - [x] T003 [P] Update .gitignore with build/ and common C build artifacts (e.g. *.o, *.a, *.so)
 
 ---

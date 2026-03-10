@@ -30,7 +30,7 @@ Every library call that can fail MUST return a value of type `tr_error`. There M
 
 ### III. Portability & Zero Mandatory Dependencies
 
-The implementation MUST depend only on C17 (ISO/IEC 9899:2018) and the target platform's native APIs for entropy (and, where used, CPU RNG instructions). There MUST be no mandatory dependency on third-party libraries (e.g. OpenSSL) for the core path. Optional dependencies, if any, MUST be clearly specified and documented. Support MUST be provided for Linux, Windows, and macOS/BSD via a single API; backend selection is at compile time via standard preprocessor macros (e.g. `_WIN32`, `__linux__`, `__APPLE__`).
+The implementation MUST depend only on C23 (ISO/IEC 9899:2024) and the target platform's native APIs for entropy (and, where used, CPU RNG instructions). There MUST be no mandatory dependency on third-party libraries (e.g. OpenSSL) for the core path. Optional dependencies, if any, MUST be clearly specified and documented. Support MUST be provided for Linux, Windows, and macOS/BSD via a single API; backend selection is at compile time via standard preprocessor macros (e.g. `_WIN32`, `__linux__`, `__APPLE__`).
 
 **Rationale:** Portability and minimal dependency surface reduce integration cost and attack surface; applications can rely on the library without pulling in large or conflicting stacks.
 
@@ -48,7 +48,7 @@ The project MUST use semantic versioning (MAJOR.MINOR.PATCH). Within the 1.x ser
 
 ## Technical Constraints
 
-- **Language & standard:** C17 (ISO/IEC 9899:2018). Build MUST set the compiler to C17 (e.g. `-std=c17`).
+- **Language & standard:** C23 (ISO/IEC 9899:2024). Build MUST set the compiler to C23 (e.g. `-std=c23`).
 - **Naming:** All public identifiers use the prefix `tr_`; constants and error codes use the prefix `TR_` (e.g. `TR_OK`, `TR_ERR_IO`). Library name is **libtruerandom**.
 - **Public API surface:** Single public header, `include/truerandom/truerandom.h`, consumable as `#include <truerandom/truerandom.h>`. No platform-specific types or backend details in the public API.
 - **Backend selection:** At compile time only; no runtime switch for backend. Platform macros (e.g. `_WIN32`, `__linux__`, `__APPLE__`) determine which backend is built.

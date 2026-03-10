@@ -1,7 +1,7 @@
 # libtruerandom — C Library Specification
 
 **Version:** 1.0 (draft)  
-**Language:** C17 (ISO/IEC 9899:2018)  
+**Language:** C23 (ISO/IEC 9899:2024)  
 **Library name:** libtruerandom
 
 ---
@@ -33,7 +33,7 @@ The library **does not** provide:
 - **Portability:** Support Linux, Windows, and macOS/BSD with a single API; optional consideration for embedded or bare-metal environments in later versions.
 - **Small API surface:** Few functions, with “fill buffer” as the core primitive and helpers as thin wrappers.
 - **Clear failure semantics:** Every call that can fail returns an explicit error; no silent fallback to weak randomness.
-- **No mandatory dependencies** beyond the C17 standard and the platform’s native APIs for entropy (and, where used, CPU RNG instructions). No dependency on OpenSSL or other crypto libraries for the core path.
+- **No mandatory dependencies** beyond the C23 standard and the platform’s native APIs for entropy (and, where used, CPU RNG instructions). No dependency on OpenSSL or other crypto libraries for the core path.
 
 ### 1.4 Non-goals
 
@@ -75,7 +75,7 @@ The following terms are used consistently in this specification.
 
 **Thread safety** — All public API functions shall be thread-safe: safe to call from multiple threads concurrently. The implementation shall not rely on unprotected global state for the core entropy path.
 
-**Portability** — The implementation shall depend only on C17 and on platform-specific APIs for entropy (and, where used, CPU RNG instructions). There shall be no mandatory dependency on third-party libraries (e.g., OpenSSL) for the core path. Optional dependencies, if any, shall be clearly specified.
+**Portability** — The implementation shall depend only on C23 and on platform-specific APIs for entropy (and, where used, CPU RNG instructions). There shall be no mandatory dependency on third-party libraries (e.g., OpenSSL) for the core path. Optional dependencies, if any, shall be clearly specified.
 
 **Fail closed** — On an unsupported platform or when no entropy source is available, the library shall fail with a clear error (e.g., `TR_ERR_NOT_SUPPORTED` or `TR_ERR_NO_ENTROPY`) rather than silently falling back to weak or non-entropy randomness. Allowed fallbacks (e.g., trying a second source on the same platform) shall be explicitly defined in the Platform and Entropy Sources sections.
 
@@ -383,11 +383,11 @@ The install target shall install the public header(s) to the include path, the s
 
 ### 9.4 Usage by Consumers
 
-A consumer shall include the header with `#include <truerandom/truerandom.h>` and link with `-ltruerandom` (or the platform equivalent). No compile-time defines shall be required for default use. The consumer shall use a C17-compatible compiler.
+A consumer shall include the header with `#include <truerandom/truerandom.h>` and link with `-ltruerandom` (or the platform equivalent). No compile-time defines shall be required for default use. The consumer shall use a C23-compatible compiler.
 
 ### 9.5 C Standard
 
-The library shall be written and built with **C17** (ISO/IEC 9899:2018). The build shall set the compiler to C17 (e.g., `-std=c17` or `-std=c11` where C17 is not yet available, with a note that C17 is the target). Any use of C17-specific features (e.g., `_Thread_local` for thread-local state, if used) shall be documented. Minimum compiler versions (e.g., GCC 7+, Clang 5+, MSVC 2017+) shall be documented as needed.
+The library shall be written and built with **C23** (ISO/IEC 9899:2024). The build shall set the compiler to C23 (e.g., `-std=c23`). Any use of C23-specific features (e.g., `thread_local` for thread-local state, if used) shall be documented. Minimum compiler versions (e.g., GCC 14+, Clang 18+, MSVC 2022 17.8+) shall be documented as needed.
 
 ---
 
@@ -524,7 +524,7 @@ Deprecation of a function or symbol shall be announced in the header (e.g., a co
 
 - Linux `getrandom(2)` — man page and kernel documentation.
 - Windows `BCryptGenRandom` — Microsoft documentation.
-- C17 — ISO/IEC 9899:2018 (C17).
+- C23 — ISO/IEC 9899:2024 (C23).
 - `/dev/urandom` — Linux and BSD random(4) documentation.
 - Intel 64 and IA-32 Architectures Software Developer’s Manual (RDRAND, RDSEED).
 - AMD64 Architecture Programmer’s Manual (RDRAND/RDSEED equivalent).

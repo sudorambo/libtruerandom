@@ -1,7 +1,7 @@
 /**
  * Unit tests for error paths: TR_ERR_PARAM, TR_ERR_NOT_SUPPORTED where applicable.
  */
-#include <truerandom/truerandom.h>
+#include "../../include/truerandom/truerandom.h"
 #include <stdio.h>
 #include <stdlib.h>
 

@@ -109,6 +109,6 @@ switch (err) {
 
 ## Requirements
 
-- C17-capable compiler (e.g. GCC 7+, Clang 5+, MSVC 2017+).
+- C23-capable compiler (e.g. GCC 14+, Clang 18+, MSVC 2022 17.8+).
 - Supported platform: Linux, Windows, or macOS (see docs/SPECIFICATION.md for backend details).
 - No mandatory third-party libraries for the core API.

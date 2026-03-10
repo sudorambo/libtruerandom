@@ -5,11 +5,11 @@
 
 ## Summary
 
-Implement a small, portable C library that provides a single API for obtaining true random (entropy) bytes from OS and hardware sources on Linux, Windows, and macOS. Core primitive: fill a caller-provided buffer with entropy; convenience functions for single uint32/uint64 and value-in-range. No mandatory third-party dependencies; explicit error codes; thread-safe; fail closed (no silent weak fallback). Technical approach: C17, compile-time backend selection per platform, internal backend “fill” contract, CMake build.
+Implement a small, portable C library that provides a single API for obtaining true random (entropy) bytes from OS and hardware sources on Linux, Windows, and macOS. Core primitive: fill a caller-provided buffer with entropy; convenience functions for single uint32/uint64 and value-in-range. No mandatory third-party dependencies; explicit error codes; thread-safe; fail closed (no silent weak fallback). Technical approach: C23, compile-time backend selection per platform, internal backend “fill” contract, CMake build.
 
 ## Technical Context
 
-**Language/Version**: C17 (ISO/IEC 9899:2018)  
+**Language/Version**: C23 (ISO/IEC 9899:2024)  
 **Primary Dependencies**: None (C standard library and platform entropy APIs only: getrandom/urandom on Unix, BCryptGenRandom on Windows; optional CPU RNG for supplement/fallback)  
 **Storage**: N/A (stateless library; no persistent storage)  
 **Testing**: Unit tests (parameter validation, error paths), integration tests (per-platform sanity checks); CTest or Make targets  
@@ -25,7 +25,7 @@ Implement a small, portable C library that provides a single API for obtaining t
 
 - **I. Minimal API & Single Responsibility**: Plan uses “fill buffer” as core primitive and thin wrappers only; no crypto/PRNG scope. ✅  
 - **II. Explicit Errors & Fail Closed**: All functions return `tr_error`; no silent weak fallback; no partial success. ✅  
-- **III. Portability & Zero Mandatory Dependencies**: C17 + platform APIs only; Linux/Windows/macOS via one API; backend at compile time. ✅  
+- **III. Portability & Zero Mandatory Dependencies**: C23 + platform APIs only; Linux/Windows/macOS via one API; backend at compile time. ✅  
 - **IV. Test Discipline**: Unit tests for params and errors; integration tests per platform with sanity check; no entropy-quality assertions in unit tests. ✅  
 - **V. Versioning & API Stability**: Semver; public API stable in 1.x. ✅  
 - **Technical Constraints**: Single header `truerandom/truerandom.h`; naming `tr_`/`TR_`; build system with build/install and optional tests. ✅  

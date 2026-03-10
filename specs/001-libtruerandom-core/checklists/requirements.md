@@ -31,5 +31,5 @@
 
 ## Notes
 
-- Spec derived from docs/SPECIFICATION.md; implementation details (C17, file layout, backend names) remain in the technical spec. This feature spec stays technology-agnostic at the requirement level.
+- Spec derived from docs/SPECIFICATION.md; implementation details (C23, file layout, backend names) remain in the technical spec. This feature spec stays technology-agnostic at the requirement level.
 - Ready for `/speckit.plan` or `/speckit.clarify` as needed.

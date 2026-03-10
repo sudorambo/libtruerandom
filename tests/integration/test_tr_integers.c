@@ -1,7 +1,7 @@
 /**
  * Integration test for tr_uint32, tr_uint64, tr_range: success and range.
  */
-#include <truerandom/truerandom.h>
+#include "../../include/truerandom/truerandom.h"
 #include <stdio.h>
 #include <stdlib.h>
 

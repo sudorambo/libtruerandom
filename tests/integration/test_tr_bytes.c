@@ -1,7 +1,7 @@
 /**
  * Integration test for tr_bytes: success and buffer not constant.
  */
-#include <truerandom/truerandom.h>
+#include "../../include/truerandom/truerandom.h"
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>

@@ -1,7 +1,7 @@
 /**
  * Unit tests for tr_bytes: parameter validation.
  */
-#include <truerandom/truerandom.h>
+#include "../../include/truerandom/truerandom.h"
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>

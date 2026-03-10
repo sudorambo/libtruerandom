@@ -7,9 +7,9 @@ All technical choices are defined in docs/SPECIFICATION.md; this document record
 
 ## Language and Standard
 
-- **Decision**: C17 (ISO/IEC 9899:2018).
-- **Rationale**: Spec mandates C17 for portability and a well-defined baseline; no C23-only features required.
-- **Alternatives considered**: C11 (wider tooling support but spec targets C17); C23 (too new for minimum support).
+- **Decision**: C23 (ISO/IEC 9899:2024).
+- **Rationale**: Spec mandates C23 for portability and a well-defined baseline; C23 compiler support is now widely available.
+- **Alternatives considered**: C17 (previous baseline); C11 (wider tooling support but spec targets C23).
 
 ## Build System
 

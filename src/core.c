@@ -2,7 +2,7 @@
  * Core API: parameter validation and backend dispatch.
  * Thread-safe: no unprotected global state; backends are stateless or thread-safe.
  */
-#include <truerandom/truerandom.h>
+#include "../include/truerandom/truerandom.h"
 #include "sources.h"
 #include <stddef.h>
 #include <string.h>

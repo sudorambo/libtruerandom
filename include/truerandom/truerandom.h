@@ -30,21 +30,21 @@ typedef enum tr_error {
  *          TR_ERR_NOT_SUPPORTED, TR_ERR_IO, or TR_ERR_NO_ENTROPY on failure.
  * On failure, buffer contents are unspecified.
  */
-tr_error tr_bytes(void *buf, size_t len);
+[[nodiscard]] tr_error tr_bytes(void *buf, size_t len);
 
 /**
  * Write a single random uint32_t derived from entropy to *out.
  *
  * Returns: TR_OK on success; TR_ERR_PARAM if out is NULL; or other errors.
  */
-tr_error tr_uint32(uint32_t *out);
+[[nodiscard]] tr_error tr_uint32(uint32_t *out);
 
 /**
  * Write a single random uint64_t derived from entropy to *out.
  *
  * Returns: TR_OK on success; TR_ERR_PARAM if out is NULL; or other errors.
  */
-tr_error tr_uint64(uint64_t *out);
+[[nodiscard]] tr_error tr_uint64(uint64_t *out);
 
 /**
  * Write a value in [min_inclusive, max_inclusive] derived from entropy to *out.
@@ -52,7 +52,7 @@ tr_error tr_uint64(uint64_t *out);
  *
  * Returns: TR_OK on success; TR_ERR_PARAM if out is NULL or min_inclusive > max_inclusive; or other errors.
  */
-tr_error tr_range(uint32_t *out, uint32_t min_inclusive, uint32_t max_inclusive);
+[[nodiscard]] tr_error tr_range(uint32_t *out, uint32_t min_inclusive, uint32_t max_inclusive);
 
 #ifdef __cplusplus
 }

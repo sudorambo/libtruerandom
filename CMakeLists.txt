@@ -1,9 +1,11 @@
 cmake_minimum_required(VERSION 3.10)
 project(libtruerandom C CXX)
 
-set(CMAKE_C_STANDARD 17)
+set(CMAKE_C_STANDARD 23)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS OFF)
+
+include_directories(${CMAKE_SOURCE_DIR}/include)
 
 option(BUILD_SHARED_LIBS "Build shared library" ON)
 option(TRUERANDOM_TESTS "Build and register tests" ON)
